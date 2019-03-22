@@ -1,0 +1,67 @@
+{
+    "name": "revealfolder",
+    "displayName": "Reveal matching folder in Explorer view",
+    "icon": "images/icon.png",
+    "description": "VS Code extention to reveal matching folder in Explorer view.",
+    "version": "1.0.10",
+    "publisher": "sandipchitale",
+    "author": {
+        "name": "Sandip Chitale"
+    },
+    "maintainers": [
+        "Sandip Chitale <sandipchitale@gmail.com>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sandipchitale/revealfolder"
+    },
+    "engines": {
+        "vscode": "^1.30.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "configuration": {
+            "properties": {
+                "revealfolder.matchLikeQuickOpenStrategy": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Match like Quick open strategy"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.revealfolder",
+                "title": "Reveal matching folder in Explorer view"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "extension.revealfolder",
+                    "group": "Explorer@1",
+                    "when": "explorerResourceIsFolder"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.10.5",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.14"
+    }
+}
