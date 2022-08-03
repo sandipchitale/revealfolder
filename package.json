@@ -1,0 +1,81 @@
+{
+    "name": "revealfolder",
+    "displayName": "Reveal matching folder in Explorer view",
+    "icon": "images/icon.png",
+    "description": "VS Code extention to reveal matching folder in Explorer view.",
+    "version": "1.0.19",
+    "license": "LICENSE.md",
+    "publisher": "sandipchitale",
+    "author": {
+        "name": "Sandip Chitale"
+    },
+    "maintainers": [
+        "Sandip Chitale <sandipchitale@gmail.com>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sandipchitale/revealfolder"
+    },
+    "engines": {
+        "vscode": "^1.69.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.revealfolder",
+        "onCommand:extension.clearrevealfoldercache"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "configuration": {
+            "properties": {
+                "revealfolder.matchLikeQuickOpenStrategy": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Match like Quick open strategy"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.revealfolder",
+                "title": "Go to Folder..."
+            },
+            {
+                "command": "extension.clearrevealfoldercache",
+                "title": "Clear Go to Folder Cache"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "extension.revealfolder",
+                    "group": "Explorer@1",
+                    "when": "explorerResourceIsFolder"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.2.2",
+        "@types/node": "14.x",
+        "@types/vscode": "^1.69.0",
+        "@typescript-eslint/eslint-plugin": "^4.26.0",
+        "@typescript-eslint/parser": "^4.26.0",
+        "eslint": "^7.27.0",
+        "glob": "^7.1.7",
+        "mocha": "^10.0.0",
+        "typescript": "^4.3.2",
+        "vscode-test": "^1.5.2"
+    }
+}
